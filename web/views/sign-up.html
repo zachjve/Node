@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+    <meta charset='UTF-8'>
+    <title>Formulaire</title>
+    <link href='../assets/style.css' rel='stylesheet'>
+    <script src="../assets/script.js"></script>
+</head>
+<body>
+
+    <form method="" action="" id="form" onsubmit="newUser()">
+        <div>
+            <label for="name">Name :</label>
+            <input type="text" id="name" name="user_name">
+        </div>
+        <div>
+            <label for="age">Age :</label>
+            <input type="number" id="age" name="user_age">
+        </div>
+        <div>
+            <label for="salary">Salary :</label>
+            <input type="number" id="salary" name="user_salary"></input>
+        </div>
+        <div>
+            <label for="password">Password :</label>
+            <input type="password" id="password" name="user_password"></input>
+        </div>
+    </form>
+    <button id='button' type="submit">Send</button>
+    
+    <script>
+
+let btn = document.querySelector('#button')
+
+btn.addEventListener("click", () => {
+
+    let myHeaders = new Headers();
+    
+    // JSON.stringify
+
+    let body = JSON.stringify({
+        'name' : "Ryan", 
+        'age' : 27,
+        'salary' : 477000,
+        'password' : "Blabla89784723"
+    })
+    
+    let myInit = {
+        method: 'POST',
+        headers: myHeaders,
+        body: body
+    }
+
+    fetch('http://localhost:8888/sign-up', myInit)
+        .then((response) => response.json())
+        .then((data) => console.log(data))
+})
+    </script>
+
+</body>
+</html>
